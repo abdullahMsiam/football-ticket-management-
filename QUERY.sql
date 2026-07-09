@@ -246,8 +246,9 @@ VALUES
     (504, 2, 101, NULL, NULL, 150.00),
     (505, 3, 102, 'C-20', 'Pending', 120.00);
 
------------------------------------------------------------------
--- Query 1: Retrieve all upcoming football matches belonging to 'Champions League' and 'Available'
+----------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+-- Query 1
 SELECT
     match_id,
     fixture,
@@ -259,7 +260,7 @@ WHERE
     AND match_status = 'Available';
 
 -----------------------------------------------------------------------
--- Query 2: Case-insensitive full name matching using pattern wildcard lookups
+-- Query 2
 SELECT
     user_id,
     full_name,
@@ -271,7 +272,7 @@ WHERE
     OR full_name ILIKE '%Haque%';
 
 ----------------------------------------------------------------------
--- Query 3: Match booking records identifying missing payment status variables
+-- Query 3
 SELECT
     booking_id,
     user_id,
@@ -283,7 +284,7 @@ WHERE
     payment_status IS NULL;
 
 -------------------------------------------------------------------------------------
--- Query 4: Relational multi-table mapping linking user identities with match properties
+-- Query 4
 SELECT
     b.booking_id,
     u.full_name,
@@ -295,7 +296,7 @@ FROM
     INNER JOIN Matches m ON b.match_id = m.match_id;
 
 -----------------------------------------------------------------------
--- Query 5: Full catalog indexing of users highlighting both active and idle fans
+-- Query 5
 SELECT
     u.user_id,
     u.full_name,
@@ -305,7 +306,7 @@ FROM
     LEFT JOIN Bookings b ON u.user_id = b.user_id;
 
 -------------------------------------------------------------------------
--- Query 6: Filtering transactions executing an active evaluation above average baseline values
+-- Query 6
 SELECT
     booking_id,
     match_id,
@@ -321,7 +322,7 @@ WHERE
     );
 
 ----------------------------------------------------------------------
--- Query 7: Premium item subset compilation using offset-driven pagination structures
+-- Query 7
 SELECT
     match_id,
     fixture,
