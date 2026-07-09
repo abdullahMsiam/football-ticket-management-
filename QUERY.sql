@@ -145,89 +145,6 @@ VALUES
     );
 
 -- =========================================================================
--- DATA SEEDING: INSERT SAMPLE DATA INTO USERS
--- =========================================================================
-INSERT INTO
-    Users (user_id, full_name, email, role, phone_number)
-VALUES
-    (
-        1,
-        'Tanvir Rahman',
-        'tanvir@mail.com',
-        'Football Fan',
-        '+8801711111111'
-    ),
-    (
-        2,
-        'Asif Haque',
-        'asif@mail.com',
-        'Football Fan',
-        '+8801722222222'
-    ),
-    (
-        3,
-        'Sajjad Rahman',
-        'sajjad@mail.com',
-        'Ticket Manager',
-        '+8801733333333'
-    ),
-    (
-        4,
-        'Jannat Ara',
-        'jannat@mail.com',
-        'Football Fan',
-        NULL
-    );
-
--- =========================================================================
--- DATA SEEDING: INSERT SAMPLE DATA INTO MATCHES
--- =========================================================================
-INSERT INTO
-    Matches (
-        match_id,
-        fixture,
-        tournament_category,
-        base_ticket_price,
-        match_status
-    )
-VALUES
-    (
-        101,
-        'Real Madrid vs Barcelona',
-        'Champions League',
-        150.00,
-        'Available'
-    ),
-    (
-        102,
-        'Man City vs Liverpool',
-        'Premier League',
-        120.00,
-        'Selling Fast'
-    ),
-    (
-        103,
-        'Bayern Munich vs PSG',
-        'Champions League',
-        130.00,
-        'Available'
-    ),
-    (
-        104,
-        'AC Milan vs Inter Milan',
-        'Serie A',
-        90.00,
-        'Sold Out'
-    ),
-    (
-        105,
-        'Juventus vs Roma',
-        'Serie A',
-        80.00,
-        'Available'
-    );
-
--- =========================================================================
 -- DATA SEEDING: INSERT SAMPLE DATA INTO BOOKINGS
 -- =========================================================================
 INSERT INTO
@@ -246,8 +163,7 @@ VALUES
     (504, 2, 101, NULL, NULL, 150.00),
     (505, 3, 102, 'C-20', 'Pending', 120.00);
 
-----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
+-- =========================================================================
 -- Query 1
 SELECT
     match_id,
@@ -259,7 +175,7 @@ WHERE
     tournament_category = 'Champions League'
     AND match_status = 'Available';
 
------------------------------------------------------------------------
+------------------------------------------------------------------------------
 -- Query 2
 SELECT
     user_id,
@@ -271,8 +187,8 @@ WHERE
     full_name ILIKE 'Tanvir%'
     OR full_name ILIKE '%Haque%';
 
-----------------------------------------------------------------------
--- Query 3
+-- Query 3: Retrieve empty fields and output a fallback status label
+-- Concepts Used: IS NULL, COALESCE
 SELECT
     booking_id,
     user_id,
@@ -283,7 +199,7 @@ FROM
 WHERE
     payment_status IS NULL;
 
--------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 -- Query 4
 SELECT
     b.booking_id,
@@ -295,7 +211,7 @@ FROM
     INNER JOIN Users u ON b.user_id = u.user_id
     INNER JOIN Matches m ON b.match_id = m.match_id;
 
------------------------------------------------------------------------
+------------------------------------------------------------------------------
 -- Query 5
 SELECT
     u.user_id,
@@ -305,7 +221,7 @@ FROM
     Users u
     LEFT JOIN Bookings b ON u.user_id = b.user_id;
 
--------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Query 6
 SELECT
     booking_id,
@@ -321,7 +237,7 @@ WHERE
             Bookings
     );
 
-----------------------------------------------------------------------
+-----------------------------------------------------------------------------------
 -- Query 7
 SELECT
     match_id,
