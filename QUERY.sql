@@ -1,3 +1,5 @@
+CREATE DATABASE Football_Ticket_Booking;
+
 -- DROP TABLES IF THEY ALREADY EXIST TO PREVENT CONFLICTS
 DROP TABLE IF EXISTS Bookings;
 
@@ -187,8 +189,8 @@ WHERE
     full_name ILIKE 'Tanvir%'
     OR full_name ILIKE '%Haque%';
 
--- Query 3: Retrieve empty fields and output a fallback status label
--- Concepts Used: IS NULL, COALESCE
+--------------------------------------------------------------------------
+-- Query 3
 SELECT
     booking_id,
     user_id,
